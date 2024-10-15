@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            flex-direction: column;
+        }
+
+        .upload-container {
+            width: 500px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .file-select {
+            margin-bottom: 20px;
+        }
+
+        .upload-button {
+            padding: 10px 20px;
+            background-color: #CC0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .upload-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .flash-message {
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background-color: #d4edda;
+            color: #155724;
+            text-align: center;
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .access-key-container {
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        function checkAccessKey() {
+            const accessKeyInput = document.getElementById('access_key');
+            const uploadButton = document.getElementById('uploadButton');
+            const correctAccessKey = "{{ correct_access_key }}";  // Set this in the Flask render context
+
+            if (accessKeyInput.value === correctAccessKey) {
+                uploadButton.disabled = false;
+            } else {
+                uploadButton.disabled = true;
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Display flash messages -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-message">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="upload-container">
+        <form id="uploadForm" action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data">
+            <div class="access-key-container">
+                <label for="access_key">Enter Access Key:</label>
+                <input type="password" id="access_key" name="access_key" onkeyup="checkAccessKey()">
+            </div>
+            <div class="file-select">
+                <label for="file1">Select PI data file:</label>
+                <input type="file" id="file1" name="file1" disabled>
+            </div>
+            <div class="file-select">
+                <label for="file2">Select client mapping file:</label>
+                <input type="file" id="file2" name="file2" disabled>
+            </div>
+            <button type="submit" id="uploadButton" class="upload-button" disabled>Upload Files</button>
+        </form>
+    </div>
+
+    <script>
+        const accessKeyInput = document.getElementById('access_key');
+        const fileInputs = document.querySelectorAll('.file-select input[type="file"]');
+
+        function checkAccessKey() {
+            const correctAccessKey = "{{ correct_access_key }}"; // Correct access key passed from Flask
+
+            if (accessKeyInput.value === correctAccessKey) {
+                fileInputs.forEach(input => input.disabled = false);
+                uploadButton.disabled = false;
+            } else {
+                fileInputs.forEach(input => input.disabled = true);
+                uploadButton.disabled = true;
+            }
+        }
+    </script>
+
+</body>
+</html>

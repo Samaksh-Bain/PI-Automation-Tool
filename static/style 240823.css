@@ -1,0 +1,446 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: #f0f0f0;
+}
+
+slot {
+    background-color: #CC0000;
+    color: white;
+    margin-left: 15.5%;
+    text-align: center;
+    position: fixed;
+    width: 85%;
+    top: 0;
+    z-index: 800;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: 70px;
+}
+
+button {
+    background-color: #CC0000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 20%;
+    margin-left: 20%;
+}
+
+button:hover {
+    background-color: white;
+    color: #CC0000;
+}
+
+.title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 30px;
+}
+
+.logo-container {
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-right: 25px;
+}
+
+.logo-container img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    margin-top: 80px;
+}
+
+.command-center {
+    width: 15%;
+    padding-left: 0.5%;
+    background-color: #f0f0f0;
+    color: black;
+    border-right: 2px solid #e2e2e2;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+}
+
+.filtertopic {
+    margin: -8%;
+    background-color: #f0f0f0;
+    color: #CC0000;
+    padding: 17.5%;
+    text-align: center;
+    font-size: 26px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter {
+    margin-top: 5%;
+    margin-bottom: 0;
+    background-color: #f0f0f0;
+    color: #000000;
+    padding: 2px;
+    border-radius: 10px;
+}
+
+.filter label {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Ensure consistent styling and arrow for both select and multi-select */
+.filter select, .multi-select-selected {
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><polygon points="0,0 10,0 5,7" fill="black"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+    box-sizing: border-box;
+}
+
+/* Adjust the position and width of the dropdown */
+.multi-select-dropdown {
+    display: none;
+    position: absolute;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    z-index: 1100;
+    max-height: 27%;
+    overflow-y: auto;
+    padding: 0;
+}
+
+.multi-select-dropdown.show {
+    display: block;
+    z-index: 1000; /* Ensures it appears above other elements */
+}
+
+/* Other styles remain the same */
+.content {
+    padding-left: 5%;
+    margin-left: 12.5%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.data-table, .chart-container {
+    margin: 20px 0;
+    width: 90%;
+    max-width: 1800px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    margin-right: 40px;
+}
+
+#chart-container {
+    position: relative;
+    width: 93%;
+    margin-right: 25px;
+    max-width: 1800px;
+    height: 630px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5%;
+    background-color: #fff;
+    background-image: url('a.png'), url('bottom axis.png');
+    background-size: 4%, 80%;
+    background-position: right;
+    background-position-x: 1%,50%;
+    background-position-y:  45%,100%;
+    background-repeat: no-repeat;
+}
+
+.foot-container {
+    background-color: #f0f0f0;
+    color: grey;
+    text-align: left;
+    padding: 5px;
+    font-size: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 80%;
+    z-index: 1200;
+}
+
+.data-table {
+    padding-top: 1%;
+    max-width: 1600px;
+    width: 97%;
+    margin-right: 25px;
+}
+
+.legend {
+    width: 520px;
+    height: 34px;
+    padding-top: 0.5%;
+    background-size: 80%;
+    background-position-y: 110%;
+    background-position-x: 0%;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    margin-left: 1%;
+}
+
+.data-table table {
+    margin-top: 2%;
+    width: 100%;
+    max-width: fit-content;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    border-bottom: 2px solid #000000;
+    padding: 8px;
+    text-align: left;
+    background-color: #FFFFFF;
+    color: #CC0000;
+}
+
+.data-table td {
+    border-bottom: 1px solid #cbcbcb;
+    padding: 8px;
+    text-align: left;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.data-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+#chart {
+    display: block;
+    max-width: 100%;
+    height: 70%;
+    margin-left: 0%;
+    margin-bottom: 4%;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.fixed-title {
+    display: flex;
+    position: fixed;
+    top: 6%;
+    width: 98%;
+    background-color: #fff;
+    color: #000000;
+    text-align: center;
+    z-index: 700;
+    padding: 10px;
+    margin: 0;
+    height: 40px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Custom Multiselect Dropdown CSS */
+.multi-select-container {
+    background-color: #f0f0f0;
+    color: #000000;
+    padding: 2px;
+    border-radius: 10px;
+    width: 98%;
+}
+
+.multi-select-container label {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.multi-select-selected-item {
+    background-color: #e0e0e0;
+    border-radius: 2px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    width: 97%;
+}
+
+.multi-select-selected-item:hover {
+    background-color: #d0d0d0;
+    width: 97%;
+}
+
+.multi-select-search {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+}
+
+.multi-select-search input {
+    position: sticky;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 10px;
+    height: 38px;
+    background-color: #ffffff;
+}
+
+.multi-select-option {
+    padding: 1px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.multi-select-option label {
+    font-size: 12px;
+    font-weight: normal;
+    text-align: left;
+    margin: 0;
+    justify-content: left;
+    padding: 0%;
+}
+
+.multi-select-option:hover {
+    background-color: #f0f0f0;
+}
+
+.multi-select-option input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.multi-select-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 0; /* Remove any margin around the buttons */
+    padding: 0 5px; /* Optional: Add padding inside the button container */
+    width: 100%; /* Ensure the buttons take up the full width of the dropdown */
+    box-sizing: border-box; /* Ensure padding is included in the width calculation */
+}
+
+.multi-select-button {
+    background-color: #CC0000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    flex: 1;
+    margin: 0; /* Remove margin between buttons */
+}
+
+.multi-select-button:not(:last-child) {
+    margin-right: 5px; /* Add a small gap between the buttons */
+}
+
+.multi-select-button:hover {
+    background-color: white;
+    color: #CC0000;
+}
+
+.multi-select-apply {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #CC0000;
+    color: white;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 0px;
+    border-radius: 0px;
+}
+
+.sort-pointer {
+    font-size: 12px;
+    color: gray;
+    font-style: italic;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.multi-select-dropdown::-webkit-scrollbar {
+    width: 8px;
+}
+
+.multi-select-dropdown::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.multi-select-dropdown::-webkit-scrollbar-thumb:hover {
+    background-color: #b3b3b3;
+}
+.data-table {
+    overflow: auto;
+    height: calc(100vh - 150px); /* Adjust based on your header and footer height */
+    position: relative;
+}
+
+.data-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: #FFFFFF; /* Ensure background color is set for the sticky header */
+    color: #CC0000;
+    border-bottom: 2px solid #000000;
+    padding: 8px;
+    text-align: left;
+}

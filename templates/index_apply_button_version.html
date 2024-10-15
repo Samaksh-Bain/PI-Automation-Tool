@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PI Data Visualization Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #CC0000;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            border-bottom: 2px solid #e2e2e2;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            display: flex;
+            margin-top: 60px; /* Adjust according to header height */
+        }
+
+        .command-center {
+            width: 20%;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-right: 2px solid #e2e2e2;
+            position: fixed;
+            top: 60px; /* Adjust according to header height */
+            bottom: 0;
+            overflow-y: auto;
+        }
+
+        .filters {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filters h2 {
+            margin-top: 0;
+        }
+
+        .filter {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .filter label {
+            margin-bottom: 5px;
+        }
+
+        .filter select {
+            padding: 5px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .content {
+            width: 80%;
+            padding: 20px;
+            margin-left: 25%; /* Match the width of .command-center */
+        }
+
+        .data-table, .chart-container {
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .data-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            border-bottom: 2px solid #000000;
+            padding: 8px;
+            text-align: left;
+            background-color: #FFFFFF;
+            color: #CC0000;
+        }
+
+        .data-table td {
+            border-bottom: 1px solid #cbcbcb;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: #FFFFFF;
+        }
+
+        .data-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        #chart {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PI Data Visualization Tool</h1>
+    </header>
+    <div class="container">
+        <div class="command-center">
+            <h2>Filters</h2>
+            <form method="GET" action="/">
+                <div class="filters">
+                    <div class="filter">
+                        <label for="industry">Industry:</label>
+                        <select id="industry" name="industry">
+                            <option value="">Select Industry</option>
+                            {% for industry in industries %}
+                                <option value="{{ industry }}" {% if request.args.get('industry') == industry %}selected{% endif %}>{{ industry }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label for="relationship">Relationship:</label>
+                        <select id="relationship" name="relationship">
+                            <option value="">Select Relationship</option>
+                            <option value="Current" {% if request.args.get('relationship') == 'Current' %}selected{% endif %}>Current</option>
+                            <option value="Recent" {% if request.args.get('relationship') == 'Recent' %}selected{% endif %}>Recent</option>
+                            <option value="Greyspace" {% if request.args.get('relationship') == 'Greyspace' %}selected{% endif %}>Greyspace</option>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label for="revenue">Revenue:</label>
+                        <select id="revenue" name="revenue">
+                            <option value="">Select Revenue Range</option>
+                            <option value="less_than_500000" {% if request.args.get('revenue') == 'less_than_500000' %}selected{% endif %}>Less than $5B</option>
+                            <option value="greater_than_500000" {% if request.args.get('revenue') == 'greater_than_500000' %}selected{% endif %}>Greater than $5B</option>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label for="country">Country:</label>
+                        <select id="country" name="country">
+                            <option value="">Select Country</option>
+                            {% for country in countries %}
+                                <option value="{{ country }}" {% if request.args.get('country') == country %}selected{% endif %}>{{ country }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <button type="submit">Apply Filters</button>
+            </form>
+            <form method="POST" action="/generate_ppt">
+                <button type="submit">Generate PPT</button>
+            </form>
+        </div>
+        <div class="content">
+            {% if filters_applied %}
+                <h2>
+                    {% if industry %}{{ industry }}{% endif %}
+                    {% if revenue == 'less_than_500000' %}Less than $5B{% elif revenue == 'greater_than_500000' %}Greater than $5B{% endif %}
+                    Potential Targets
+                    {% if relationship %}({{ relationship }}){% endif %}
+                </h2>
+                {% if filtered_data %}
+                <div class="chart-container" id="chart-view">
+                    <canvas id="chart"></canvas>
+                </div>
+                <div class="data-table" id="table-view">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Revenue ($B)</th>
+                                <th>Sector</th>
+                                <th>EBIT % pt change</th>
+                                <th>EBIT opportunity ($M)</th>
+                                <th>SG&A opportunity ($M)</th>
+                                <th>NWC opportunity ($M)</th>
+                                <th>Projected Rev oppty '22-'24 ($M)</th>
+                                <th>Historical Rev. Growth '22 vs '21</th>
+                                <th>Net debt / EBITDA</th>
+                                <th>Relative ESG Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in filtered_data %}
+                            <tr>
+                                <td>{{ row['Company'] }}</td>
+                                <td>{{ "%.0f" | format(row['Revenue (M)'] /1000) }}</td>
+                                <td>{{ row['Primary Industry'] }}</td>
+                                <td>{{ "%.0f" | format(row['EBIT margin Change (% pts.)  [Benchmark year-Base year]'] * 100) }}%</td>
+                                <td>{{ row['Static EBIT opportunity (Median)'] }}</td>
+                                <td>{{ row['Static SG&A Opportunity (Median)'] }}</td>
+                                <td>{{ row['Static NWC opportunity (Median)'] }}</td>
+                                <td>{{ row["Median Incremental Rev. - EBIT Oppty (Static Projected)"] }}</td>
+                                <td>{{ "%.0f" | format(row["Historical rev. CAGR"] * 100) }}%</td>
+                                <td>{{ row["Net debt/EBITDA (Dec'22)"] }}x</td>
+                                <td>{{ row['Relative ESG Combined score'] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p>No data available</p>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.getElementById('chart')) {
+                drawChart();
+            }
+        });
+
+        function drawChart() {
+            const ctx = document.getElementById('chart').getContext('2d');
+            
+            // Data embedded directly into the script
+            const chartData = [
+                {% for row in filtered_data %}
+                {
+                    x: {{ row['Combined Opp. Score'] | default(0) }},
+                    y: {{ row['Bain Relationship Score'] | default(0) }},
+                    r: {{ "%.0f" | format((row['Revenue (M)'] / min_revenue) | default(0)) }},
+                    company: "{{ row['Company'] }}"
+                },
+                {% endfor %}
+            ];
+
+            // Log the chartData to the console for debugging
+            console.log('Chart Data:', chartData);
+
+            const data = {
+                datasets: [{
+                    data: chartData,
+                    backgroundColor: 'rgba(104, 104, 104, 0.2)',
+                    borderColor: 'rgba(104, 104, 104, 0.2)',
+                    borderWidth: 1
+                }]
+            };
+
+            const config = {
+                type: 'bubble',
+                data: data,
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Combined Opportunity Score'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Bain Relationship Score'
+                            }
+                        },
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = `Company: ${context.raw.company}`;
+                                    label += `, Revenue: $${context.raw.r}M`;
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            const myChart = new Chart(ctx, config);
+
+            // Add company names to the bubbles
+            myChart.options.plugins.datalabels = {
+                align: 'center',
+                anchor: 'center',
+                color: 'black',
+                font: {
+                    weight: 'bold'
+                },
+                formatter: function(value, context) {
+                    return value.company;
+                }
+            };
+
+            myChart.update();
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PI Data Visualization Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #CC0000;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            border-bottom: 2px solid #e2e2e2;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            display: flex;
+            margin-top: 60px; /* Adjust according to header height */
+        }
+
+        .command-center {
+            width: 20%;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-right: 2px solid #e2e2e2;
+            position: fixed;
+            top: 60px; /* Adjust according to header height */
+            bottom: 0;
+            overflow-y: auto;
+        }
+
+        .filters {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filters h2 {
+            margin-top: 0;
+        }
+
+        .filter {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .filter label {
+            margin-bottom: 5px;
+        }
+
+        .filter select {
+            padding: 5px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .content {
+            width: 80%;
+            padding: 20px;
+            margin-left: 25%; /* Match the width of .command-center */
+        }
+
+        .data-table, .chart-container {
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .data-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            border-bottom: 2px solid #000000;
+            padding: 8px;
+            text-align: left;
+            background-color: #FFFFFF;
+            color: #CC0000;
+        }
+
+        .data-table td {
+            border-bottom: 1px solid #cbcbcb;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: #FFFFFF;
+        }
+
+        .data-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        #chart {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PI Data Visualization Tool</h1>
+    </header>
+    <div class="container">
+        <div class="command-center">
+            <h2>Filters</h2>
+            <form method="GET" action="/" id="filter-form">
+                <div class="filters">
+                    <div class="filter">
+                        <label for="industry">Industry:</label>
+                        <select id="industry" name="industry">
+                            <option value="">Select Industry</option>
+                            {% for industry in industries %}
+                                <option value="{{ industry }}" {% if request.args.get('industry') == industry %}selected{% endif %}>{{ industry }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label for="relationship">Relationship:</label>
+                        <select id="relationship" name="relationship">
+                            <option value="">Select Relationship</option>
+                            <option value="Current" {% if request.args.get('relationship') == 'Current' %}selected{% endif %}>Current</option>
+                            <option value="Recent" {% if request.args.get('relationship') == 'Recent' %}selected{% endif %}>Recent</option>
+                            <option value="Greyspace" {% if request.args.get('relationship') == 'Greyspace' %}selected{% endif %}>Greyspace</option>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label for="revenue">Revenue:</label>
+                        <select id="revenue" name="revenue">
+                            <option value="">Select Revenue Range</option>
+                            <option value="less_than_500000" {% if request.args.get('revenue') == 'less_than_500000' %}selected{% endif %}>Less than $5B</option>
+                            <option value="greater_than_500000" {% if request.args.get('revenue') == 'greater_than_500000' %}selected{% endif %}>Greater than $5B</option>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label for="country">Country:</label>
+                        <select id="country" name="country">
+                            <option value="">Select Country</option>
+                            {% for country in countries %}
+                                <option value="{{ country }}" {% if request.args.get('country') == country %}selected{% endif %}>{{ country }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <form method="POST" action="/generate_ppt">
+                <button type="submit">Generate PPT</button>
+            </form>
+        </div>
+        <div class="content">
+            {% if filters_applied %}
+                <h2>
+                    {% if industry %}{{ industry }}{% endif %}
+                    {% if revenue == 'less_than_500000' %}Less than $5B{% elif revenue == 'greater_than_500000' %}Greater than $5B{% endif %}
+                    Potential Targets
+                    {% if relationship %}({{ relationship }}){% endif %}
+                </h2>
+                {% if filtered_data %}
+                <div class="chart-container" id="chart-view">
+                    <canvas id="chart"></canvas>
+                </div>
+                <div class="data-table" id="table-view">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Revenue ($B)</th>
+                                <th>Sector</th>
+                                <th>EBIT % pt change</th>
+                                <th>EBIT opportunity ($M)</th>
+                                <th>SG&A opportunity ($M)</th>
+                                <th>NWC opportunity ($M)</th>
+                                <th>Projected Rev oppty '22-'24 ($M)</th>
+                                <th>Historical Rev. Growth '22 vs '21</th>
+                                <th>Net debt / EBITDA</th>
+                                <th>Relative ESG Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in filtered_data %}
+                            <tr>
+                                <td>{{ row['Company'] }}</td>
+                                <td>{{ "%.0f" | format(row['Revenue (M)'] /1000) }}</td>
+                                <td>{{ row['Primary Industry'] }}</td>
+                                <td>{{ "%.0f" | format(row['EBIT margin Change (% pts.)  [Benchmark year-Base year]'] * 100) }}%</td>
+                                <td>{{ row['Static EBIT opportunity (Median)'] }}</td>
+                                <td>{{ row['Static SG&A Opportunity (Median)'] }}</td>
+                                <td>{{ row['Static NWC opportunity (Median)'] }}</td>
+                                <td>{{ row["Median Incremental Rev. - EBIT Oppty (Static Projected)"] }}</td>
+                                <td>{{ "%.0f" | format(row["Historical rev. CAGR"] * 100) }}%</td>
+                                <td>{{ row["Net debt/EBITDA (Dec'22)"] }}x</td>
+                                <td>{{ row['Relative ESG Combined score'] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p>No data available</p>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.getElementById('chart')) {
+                drawChart();
+            }
+
+            // Attach change event listeners to all select elements
+            const filterForm = document.getElementById('filter-form');
+            const filters = filterForm.querySelectorAll('select');
+
+            filters.forEach(filter => {
+                filter.addEventListener('change', () => {
+                    filterForm.submit();
+                });
+            });
+        });
+
+        function drawChart() {
+            const ctx = document.getElementById('chart').getContext('2d');
+            
+            // Data embedded directly into the script
+            const chartData = [
+                {% for row in filtered_data %}
+                {
+                    x: {{ row['Combined Opp. Score'] | default(0) }},
+                    y: {{ row['Bain Relationship Score'] | default(0) }},
+                    r: {{ "%.0f" | format((row['Revenue (M)'] / min_revenue) | default(0)) }},
+                    company: "{{ row['Company'] }}"
+                },
+                {% endfor %}
+            ];
+
+            // Log the chartData to the console for debugging
+            console.log('Chart Data:', chartData);
+
+            const data = {
+                datasets: [{
+                    data: chartData,
+                    backgroundColor: 'rgba(104, 104, 104, 0.2)',
+                    borderColor: 'rgba(104, 104, 104, 0.2)',
+                    borderWidth: 1
+                }]
+            };
+
+            const config = {
+                type: 'bubble',
+                data: data,
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Combined Opportunity Score'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Bain Relationship Score'
+                            }
+                        },
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = `Company: ${context.raw.company}`;
+                                    label += `, Revenue: $${context.raw.r}M`;
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            const myChart = new Chart(ctx, config);
+
+            // Add company names to the bubbles
+            myChart.options.plugins.datalabels = {
+                align: 'center',
+                anchor: 'center',
+                color: 'black',
+                font: {
+                    weight: 'bold'
+                },
+                formatter: function(value, context) {
+                    return value.company;
+                }
+            };
+
+            myChart.update();
+        }
+    </script>
+</body>
+</html>

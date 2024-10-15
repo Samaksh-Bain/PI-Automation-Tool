@@ -1,0 +1,2588 @@
+[
+    {
+        "template": "C:\\Users\\69578\\Downloads\\240911_Python_web_app_vF\\240830_Python_web_app_vF\\240830_Python_web_app_vF\\Python to PPT\\Template files\\input.pptx",
+        "data": [
+            {
+                "name": "BubbleChart1",
+                "table": [
+                    [
+                        {
+                            "string": "Company"
+                        },
+                        {
+                            "string": "Combined Opp. Score"
+                        },
+                        {
+                            "string": "Bain Relationship Score"
+                        },
+                        {
+                            "string": "Revenue (M)"
+                        }
+                    ],
+                    [
+                        {
+                            "string": "AMOREPACIFIC Group"
+                        },
+                        {
+                            "number": 15.5
+                        },
+                        {
+                            "number": 3.2
+                        },
+                        {
+                            "number": 3574.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Adani Wilmar Limited"
+                        },
+                        {
+                            "number": 12.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 7144.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Ajinomoto Co., Inc."
+                        },
+                        {
+                            "number": 7.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 9465.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Amber Enterprises India Limited"
+                        },
+                        {
+                            "number": 12.0
+                        },
+                        {
+                            "number": 1.2
+                        },
+                        {
+                            "number": 554.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Amorepacific Corporation"
+                        },
+                        {
+                            "number": 16.0
+                        },
+                        {
+                            "number": 7.1
+                        },
+                        {
+                            "number": 3288.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Asahi Group Holdings, Ltd."
+                        },
+                        {
+                            "number": 10.0
+                        },
+                        {
+                            "number": 6.2
+                        },
+                        {
+                            "number": 19042.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Avanti Feeds Limited"
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 664.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "BANDAI NAMCO Holdings Inc."
+                        },
+                        {
+                            "number": 3.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 7323.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Bajaj Electricals Limited"
+                        },
+                        {
+                            "number": 1.5
+                        },
+                        {
+                            "number": 3.6
+                        },
+                        {
+                            "number": 634.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Bajaj Hindusthan Sugar Limited"
+                        },
+                        {
+                            "number": 12.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 735.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Balrampur Chini Mills Limited"
+                        },
+                        {
+                            "number": 1.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 639.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Bega Cheese Limited"
+                        },
+                        {
+                            "number": 16.0
+                        },
+                        {
+                            "number": 3.4
+                        },
+                        {
+                            "number": 2074.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Betagro Public Company Limited"
+                        },
+                        {
+                            "number": 2.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3258.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Binggrae Co., Ltd."
+                        },
+                        {
+                            "number": 13.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1008.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Bourbon Corporation"
+                        },
+                        {
+                            "number": 17.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 778.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Breville Group Limited"
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 1.4
+                        },
+                        {
+                            "number": 977.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Britannia Industries Limited"
+                        },
+                        {
+                            "number": 1.0
+                        },
+                        {
+                            "number": 2.8
+                        },
+                        {
+                            "number": 1837.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "British American Tobacco"
+                        },
+                        {
+                            "number": 5.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 593.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "C.I. Holdings Berhad"
+                        },
+                        {
+                            "number": 13.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 918.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "COWAY Co., Ltd."
+                        },
+                        {
+                            "number": 9.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3066.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Calbee, Inc."
+                        },
+                        {
+                            "number": 7.0
+                        },
+                        {
+                            "number": 2.4
+                        },
+                        {
+                            "number": 2021.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Can-One Berhad"
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 723.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Carabao Group Public Company Limited"
+                        },
+                        {
+                            "number": 6.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 523.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Carlsberg Brewery Malaysia Berhad"
+                        },
+                        {
+                            "number": 3.5
+                        },
+                        {
+                            "number": 1.4
+                        },
+                        {
+                            "number": 551.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Charoen Pokphand Foods Public Company Limited"
+                        },
+                        {
+                            "number": 13.5
+                        },
+                        {
+                            "number": 3.6
+                        },
+                        {
+                            "number": 17767.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Cleanup Corporation"
+                        },
+                        {
+                            "number": 16.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 933.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Coca-Cola Bottlers Japan Holdings Inc."
+                        },
+                        {
+                            "number": 18.0
+                        },
+                        {
+                            "number": 7.4
+                        },
+                        {
+                            "number": 6123.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Colgate-Palmolive"
+                        },
+                        {
+                            "number": 2.5
+                        },
+                        {
+                            "number": 3.2
+                        },
+                        {
+                            "number": 672.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Corona Corporation"
+                        },
+                        {
+                            "number": 12.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 648.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Crompton Greaves Consumer Electricals Limited"
+                        },
+                        {
+                            "number": 2.0
+                        },
+                        {
+                            "number": 5.4
+                        },
+                        {
+                            "number": 711.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Dabaco Group Joint Stock Company"
+                        },
+                        {
+                            "number": 14.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 520.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Dabur India Limited"
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 5.2
+                        },
+                        {
+                            "number": 1435.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "DyDo Group Holdings, Inc."
+                        },
+                        {
+                            "number": 14.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1426.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Earth Corporation"
+                        },
+                        {
+                            "number": 6.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1155.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Ezaki Glico Co., Ltd."
+                        },
+                        {
+                            "number": 14.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2305.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Fancl Corporation"
+                        },
+                        {
+                            "number": 8.0
+                        },
+                        {
+                            "number": 5.0
+                        },
+                        {
+                            "number": 856.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Feedone Co., Ltd."
+                        },
+                        {
+                            "number": 13.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2003.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Fonterra Co-operative Group Limited"
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 7.4
+                        },
+                        {
+                            "number": 14383.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Fraser & Neave Holdings Bhd"
+                        },
+                        {
+                            "number": 5.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 962.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Fraser and Neave, Limited"
+                        },
+                        {
+                            "number": 7.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1396.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Fuji Oil Holdings Inc."
+                        },
+                        {
+                            "number": 14.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3573.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Fujitsu General Limited"
+                        },
+                        {
+                            "number": 13.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2340.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Fujiya Co., Ltd."
+                        },
+                        {
+                            "number": 15.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 763.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "GFPT Public Company Limited"
+                        },
+                        {
+                            "number": 6.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 527.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Globeride, Inc."
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 994.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Godrej Consumer Products Limited"
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 6.2
+                        },
+                        {
+                            "number": 1618.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Gokul Agro Resources Limited"
+                        },
+                        {
+                            "number": 10.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1369.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Guan Chong Berhad"
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1009.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Hagoromo Foods Corporation"
+                        },
+                        {
+                            "number": 17.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 564.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Hatsun Agro Product Limited"
+                        },
+                        {
+                            "number": 2.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 839.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Heineken Malaysia Berhad"
+                        },
+                        {
+                            "number": 5.0
+                        },
+                        {
+                            "number": 4.1
+                        },
+                        {
+                            "number": 652.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Hindustan Unilever Limited"
+                        },
+                        {
+                            "number": 1.5
+                        },
+                        {
+                            "number": 6.2
+                        },
+                        {
+                            "number": 6911.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "House Foods Group Inc."
+                        },
+                        {
+                            "number": 8.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2087.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "ITC Limited"
+                        },
+                        {
+                            "number": 0.5
+                        },
+                        {
+                            "number": 5.1
+                        },
+                        {
+                            "number": 7994.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Indofood Agri Resources Ltd."
+                        },
+                        {
+                            "number": 2.0
+                        },
+                        {
+                            "number": 1.2
+                        },
+                        {
+                            "number": 1146.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Inghams Group Limited"
+                        },
+                        {
+                            "number": 9.5
+                        },
+                        {
+                            "number": 1.4
+                        },
+                        {
+                            "number": 1886.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Ito En, Ltd."
+                        },
+                        {
+                            "number": 17.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3088.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Itoham Yonekyu Holdings Inc."
+                        },
+                        {
+                            "number": 15.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 7036.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Itoki Corporation"
+                        },
+                        {
+                            "number": 16.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 935.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "J-Oil Mills, Inc."
+                        },
+                        {
+                            "number": 17.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1660.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "JB Foods Limited"
+                        },
+                        {
+                            "number": 11.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 510.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Japan Tobacco Inc."
+                        },
+                        {
+                            "number": 9.0
+                        },
+                        {
+                            "number": 0.8
+                        },
+                        {
+                            "number": 20154.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Japfa Ltd."
+                        },
+                        {
+                            "number": 16.0
+                        },
+                        {
+                            "number": 4.1
+                        },
+                        {
+                            "number": 4364.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "KENKO Mayonnaise Co.,Ltd."
+                        },
+                        {
+                            "number": 17.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 623.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "KIDO Group Corporation"
+                        },
+                        {
+                            "number": 15.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 530.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "KOS\u00c9 Corporation"
+                        },
+                        {
+                            "number": 16.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2193.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "KRBL Limited"
+                        },
+                        {
+                            "number": 0.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 555.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "KT&G Corporation"
+                        },
+                        {
+                            "number": 6.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 4653.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Kagome Co., Ltd."
+                        },
+                        {
+                            "number": 9.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1559.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Kameda Seika Co.,Ltd."
+                        },
+                        {
+                            "number": 9.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 701.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Kawai Musical Instruments Manufacturing Co., Ltd."
+                        },
+                        {
+                            "number": 14.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 706.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Kewpie Corporation"
+                        },
+                        {
+                            "number": 5.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3088.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Kibun Foods Inc."
+                        },
+                        {
+                            "number": 16.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 817.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Kikkoman Corporation"
+                        },
+                        {
+                            "number": 6.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 4253.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Kirin Holdings Company, Limited"
+                        },
+                        {
+                            "number": 10.0
+                        },
+                        {
+                            "number": 2.8
+                        },
+                        {
+                            "number": 15086.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Kobayashi Pharmaceutical Co., Ltd."
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1261.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Kokuyo Co., Ltd."
+                        },
+                        {
+                            "number": 11.5
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 2282.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Kyokuyo Co., Ltd."
+                        },
+                        {
+                            "number": 14.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2088.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "LG H&H Co., Ltd."
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 5714.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "LT Foods Limited"
+                        },
+                        {
+                            "number": 2.0
+                        },
+                        {
+                            "number": 0.2
+                        },
+                        {
+                            "number": 715.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Leong Hup International Berhad"
+                        },
+                        {
+                            "number": 5.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2065.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Lion Corporation"
+                        },
+                        {
+                            "number": 6.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2956.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Lotte Chilsung Beverage Co., Ltd."
+                        },
+                        {
+                            "number": 3.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2260.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Lotte Confectionery Co., Ltd."
+                        },
+                        {
+                            "number": 17.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2547.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "MEGMILK SNOW BRAND Co.,Ltd."
+                        },
+                        {
+                            "number": 15.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 4598.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "MSM Malaysia Holdings Berhad"
+                        },
+                        {
+                            "number": 12.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 586.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Malayan Flour Mills Berhad"
+                        },
+                        {
+                            "number": 15.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 666.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Marico Limited"
+                        },
+                        {
+                            "number": 2.5
+                        },
+                        {
+                            "number": 5.4
+                        },
+                        {
+                            "number": 1253.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Marudai Food Co., Ltd."
+                        },
+                        {
+                            "number": 15.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1800.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Maruha Nichiro Corporation"
+                        },
+                        {
+                            "number": 14.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 7137.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Masan Group Corporation"
+                        },
+                        {
+                            "number": 8.0
+                        },
+                        {
+                            "number": 4.2
+                        },
+                        {
+                            "number": 3226.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Meiji Holdings Co., Ltd."
+                        },
+                        {
+                            "number": 9.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 8343.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Mewah International Inc."
+                        },
+                        {
+                            "number": 14.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 5429.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Mitsubishi Pencil Co., Ltd."
+                        },
+                        {
+                            "number": 4.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 523.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Mitsui DM Sugar Holdings Co., Ltd."
+                        },
+                        {
+                            "number": 16.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1218.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Mizuno Corporation"
+                        },
+                        {
+                            "number": 18.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1423.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Morinaga Milk Industry Co., Ltd."
+                        },
+                        {
+                            "number": 9.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 4145.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Morinaga&Co., Ltd."
+                        },
+                        {
+                            "number": 6.5
+                        },
+                        {
+                            "number": 1.2
+                        },
+                        {
+                            "number": 1493.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "NH Foods Ltd."
+                        },
+                        {
+                            "number": 16.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 9671.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Nagatanien Holdings Co.,Ltd."
+                        },
+                        {
+                            "number": 15.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 786.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Nestl\u00e9"
+                        },
+                        {
+                            "number": 6.5
+                        },
+                        {
+                            "number": 0.8
+                        },
+                        {
+                            "number": 1521.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Nestl\u00e9 India Limited"
+                        },
+                        {
+                            "number": 0.5
+                        },
+                        {
+                            "number": 3.6
+                        },
+                        {
+                            "number": 2029.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Nichimo Co., Ltd."
+                        },
+                        {
+                            "number": 13.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 951.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Nichirei Corporation"
+                        },
+                        {
+                            "number": 6.0
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 4963.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Nippn Corporation"
+                        },
+                        {
+                            "number": 18.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2646.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Nisshin Seifun Group Inc."
+                        },
+                        {
+                            "number": 17.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 5598.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Nissin Foods Holdings Co.,Ltd."
+                        },
+                        {
+                            "number": 6.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 4692.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Nissui Corporation"
+                        },
+                        {
+                            "number": 16.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 5712.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Nitto Fuji Flour Milling Co.,Ltd."
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 489.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Nongshim Co., Ltd."
+                        },
+                        {
+                            "number": 14.0
+                        },
+                        {
+                            "number": 6.0
+                        },
+                        {
+                            "number": 2488.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "ORION Corp."
+                        },
+                        {
+                            "number": 4.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2285.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "ORION Holdings Corp."
+                        },
+                        {
+                            "number": 4.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2333.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Oenon Holdings, Inc."
+                        },
+                        {
+                            "number": 14.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 615.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Okamura Corporation (TSE:7994)"
+                        },
+                        {
+                            "number": 15.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2151.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Osotspa Public Company Limited"
+                        },
+                        {
+                            "number": 5.0
+                        },
+                        {
+                            "number": 3.6
+                        },
+                        {
+                            "number": 789.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "PPB Group Berhad"
+                        },
+                        {
+                            "number": 13.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1404.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "PT Garudafood Putra Putri Jaya Tbk"
+                        },
+                        {
+                            "number": 5.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 677.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "PT Japfa Comfeed Indonesia Tbk"
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3154.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "PT Salim Ivomas Pratama Tbk"
+                        },
+                        {
+                            "number": 2.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1146.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "PT Triputra Agro Persada Tbk"
+                        },
+                        {
+                            "number": 3.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 602.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "PT Unilever Indonesia Tbk"
+                        },
+                        {
+                            "number": 5.0
+                        },
+                        {
+                            "number": 1.2
+                        },
+                        {
+                            "number": 2654.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Patanjali Foods Limited"
+                        },
+                        {
+                            "number": 0.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3190.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Pigeon Corporation"
+                        },
+                        {
+                            "number": 6.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 720.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Pilot Corporation"
+                        },
+                        {
+                            "number": 5.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 856.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Pola Orbis Holdings Inc."
+                        },
+                        {
+                            "number": 10.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1261.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Premium Water Holdings,Inc."
+                        },
+                        {
+                            "number": 5.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 564.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Prima Meat Packers, Ltd."
+                        },
+                        {
+                            "number": 13.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3455.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "QL Resources Berhad"
+                        },
+                        {
+                            "number": 2.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1243.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "RIZAP GROUP, Inc."
+                        },
+                        {
+                            "number": 14.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1337.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Ricegrowers Limited"
+                        },
+                        {
+                            "number": 18.0
+                        },
+                        {
+                            "number": 3.2
+                        },
+                        {
+                            "number": 945.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Riken Vitamin Co., Ltd."
+                        },
+                        {
+                            "number": 6.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 652.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Rinnai Corporation"
+                        },
+                        {
+                            "number": 2.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3016.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Rohto Pharmaceutical Co.,Ltd."
+                        },
+                        {
+                            "number": 3.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1644.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Roland Corporation"
+                        },
+                        {
+                            "number": 8.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 727.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "S Foods Inc."
+                        },
+                        {
+                            "number": 11.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3113.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "S&B Foods Inc."
+                        },
+                        {
+                            "number": 9.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 972.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Saigon Beer - Alcohol - Beverage Corporation"
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1481.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Sajodaerim Corporation"
+                        },
+                        {
+                            "number": 9.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1605.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Samyang Corporation"
+                        },
+                        {
+                            "number": 13.0
+                        },
+                        {
+                            "number": 5.4
+                        },
+                        {
+                            "number": 2109.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Sankyo Co., Ltd."
+                        },
+                        {
+                            "number": 5.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 699.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Sapporo Holdings Limited"
+                        },
+                        {
+                            "number": 19.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3628.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Sato Holdings Corporation"
+                        },
+                        {
+                            "number": 13.5
+                        },
+                        {
+                            "number": 1.2
+                        },
+                        {
+                            "number": 1028.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Sega Sammy Holdings Inc."
+                        },
+                        {
+                            "number": 1.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2643.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Shimano Inc."
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 4769.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Shiseido Company, Limited"
+                        },
+                        {
+                            "number": 20.0
+                        },
+                        {
+                            "number": 5.6
+                        },
+                        {
+                            "number": 8094.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Showa Sangyo Co., Ltd."
+                        },
+                        {
+                            "number": 18.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2369.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Shree Renuka Sugars Limited"
+                        },
+                        {
+                            "number": 12.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 842.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Starzen Company Limited"
+                        },
+                        {
+                            "number": 14.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3141.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Suntory Beverage & Food Limited"
+                        },
+                        {
+                            "number": 4.5
+                        },
+                        {
+                            "number": 6.4
+                        },
+                        {
+                            "number": 10998.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Synlait Milk Limited"
+                        },
+                        {
+                            "number": 11.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1041.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "TOMY Company, Ltd."
+                        },
+                        {
+                            "number": 16.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1362.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Takara Holdings Inc."
+                        },
+                        {
+                            "number": 6.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2478.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Tata Consumer Products Limited"
+                        },
+                        {
+                            "number": 0.5
+                        },
+                        {
+                            "number": 6.3
+                        },
+                        {
+                            "number": 1637.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Thai Beverage Public Company Limited"
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 0.4
+                        },
+                        {
+                            "number": 7216.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Thai President Foods Public Company Limited"
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 766.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Thai Union Group Public Company Limited"
+                        },
+                        {
+                            "number": 5.5
+                        },
+                        {
+                            "number": 7.65
+                        },
+                        {
+                            "number": 4501.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Thai Vegetable Oil Public Company Limited"
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1131.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Thaifoods Group Public Company Limited"
+                        },
+                        {
+                            "number": 2.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1514.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Thanh Thanh Cong - Bien Hoa Joint Stock Company"
+                        },
+                        {
+                            "number": 11.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 786.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "The Bombay Burmah Trading Corporation, Limited"
+                        },
+                        {
+                            "number": 1.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1917.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "The Nisshin OilliO Group,Ltd."
+                        },
+                        {
+                            "number": 16.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3564.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "The a2 Milk Company Limited"
+                        },
+                        {
+                            "number": 4.5
+                        },
+                        {
+                            "number": 6.1
+                        },
+                        {
+                            "number": 899.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Toyo Suisan Kaisha, Ltd."
+                        },
+                        {
+                            "number": 6.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 2977.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Treasury Wine Estates Limited"
+                        },
+                        {
+                            "number": 9.0
+                        },
+                        {
+                            "number": 2.1
+                        },
+                        {
+                            "number": 1744.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Triveni Engineering & Industries Limited"
+                        },
+                        {
+                            "number": 0.5
+                        },
+                        {
+                            "number": 5.2
+                        },
+                        {
+                            "number": 565.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Tsuburaya Fields Holdings Inc."
+                        },
+                        {
+                            "number": 11.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 781.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Unicharm Corporation"
+                        },
+                        {
+                            "number": 6.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 6810.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "United Breweries Limited"
+                        },
+                        {
+                            "number": 0.5
+                        },
+                        {
+                            "number": 7.2
+                        },
+                        {
+                            "number": 769.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "United Spirits Limited"
+                        },
+                        {
+                            "number": 3.0
+                        },
+                        {
+                            "number": 5.8
+                        },
+                        {
+                            "number": 1280.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Universal Entertainment Corporation"
+                        },
+                        {
+                            "number": 17.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1069.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Varun Beverages Limited"
+                        },
+                        {
+                            "number": 1.5
+                        },
+                        {
+                            "number": 1.2
+                        },
+                        {
+                            "number": 1592.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Venky's"
+                        },
+                        {
+                            "number": 11.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 580.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Vietnam Dairy Products Joint Stock Company"
+                        },
+                        {
+                            "number": 4.0
+                        },
+                        {
+                            "number": 2.2
+                        },
+                        {
+                            "number": 2539.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Vinh Hoan Corporation"
+                        },
+                        {
+                            "number": 5.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 561.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Warabeya Nichiyo Holdings Co., Ltd."
+                        },
+                        {
+                            "number": 16.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 1668.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Whirlpool of India Limited"
+                        },
+                        {
+                            "number": 8.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 817.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "YONEX Co., Ltd."
+                        },
+                        {
+                            "number": 16.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 613.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Yakult Honsha Co.,Ltd."
+                        },
+                        {
+                            "number": 5.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3418.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Yamaha Corporation"
+                        },
+                        {
+                            "number": 3.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3361.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Yamazaki Baking Co., Ltd."
+                        },
+                        {
+                            "number": 18.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 8167.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "Zojirushi Corporation"
+                        },
+                        {
+                            "number": 6.0
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 590.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "i-Tail Corporation Public Company Limited"
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 3.6
+                        },
+                        {
+                            "number": 652.0
+                        }
+                    ],
+                    [
+                        {
+                            "string": "ktcs corporation"
+                        },
+                        {
+                            "number": 15.5
+                        },
+                        {
+                            "number": 0.0
+                        },
+                        {
+                            "number": 819.0
+                        }
+                    ]
+                ]
+            }
+        ]
+    }
+]

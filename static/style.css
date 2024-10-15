@@ -1,0 +1,521 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: #f0f0f0;
+}
+
+slot {
+    background-color: #CC0000;
+    color: white;
+    margin-left: 15.5%;
+    text-align: center;
+    position: fixed;
+    width: 85%;
+    top: 0;
+    z-index: 800;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: 7%;
+}
+
+/* Style for Generate PPT button with background color, text color, and padding */
+button {
+    background-color: #CC0000;
+    color: white;
+    border: none;
+    padding: 8px 15px; /* Increased padding to maintain proportionality */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px; /* Increased font-size by 1 point */
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 20px;
+    margin-left: 30%;
+    margin-right: 65px;
+
+}
+buttonn {
+    color: rgb(93, 90, 90);
+    border: none;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px; 
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 0%;
+    margin-left: 70%;
+    margin-right: 5%;
+    font-weight: bold;
+    text-wrap: nowrap;
+
+}
+
+buttonn:hover {
+    color: #CC0000;
+}
+
+
+button:hover {
+    background-color: #f0f0f0;
+    color: #CC0000;
+}
+
+/* Main web page title*/
+.title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 160%;
+    margin-right: -26%;
+}
+
+/* Bain logo - container*/
+.logo-container {
+    width: 9%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-left: auto;  /* Pushes the container to the right */
+    margin-right: 10%; 
+}
+
+.logo-container img {
+    max-width: 170%;
+    max-height: 170%;
+}
+
+
+.container {
+    display: flex;
+    flex: 1;
+    margin-top: 5.25%;
+}
+
+/* Filters*/
+.command-center {
+    width: 15%;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+    background-color: #f0f0f0;
+    color: black;
+    border-right: 2% solid #e2e2e2;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.filtertopic {
+    margin: -8%;
+    background-color: #f0f0f0;
+    color: #CC0000;
+    padding: 14.5%;
+    text-align: center;
+    font-size: 150%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter {
+    margin-top: 5%;
+    margin-bottom: 0;
+    background-color: #f0f0f0;
+    color: #000000;
+    padding: 0%;
+    border-radius: 10px;
+    
+}
+
+.filter label {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Ensure consistent styling and arrow for both select and multi-select */
+.filter select, .multi-select-selected {
+    padding: 2%;
+    font-size: 80%;
+    width: 100%;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><polygon points="0,0 10,0 5,7" fill="black"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 4% center;
+    background-size: 3.5%;
+    box-sizing: border-box;
+}
+
+/* Adjust the position and width of the multi-select dropdown */
+.multi-select-dropdown {
+    display: none;
+    position: absolute;
+    border: 1% solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    width: 93%;
+    z-index: 1100;
+    max-height: 27%;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    padding-right: 0px;
+}
+
+.multi-select-dropdown.show {
+    display: block;
+    z-index: 1000; /* Ensures it appears above other elements */
+}
+
+/* Other styles remain the same */
+.content {
+    padding-left: 5%;
+    margin-left: 12.5%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.data-table, .chart-container {
+    margin: 1.5% 0%;
+    width: 100%;
+    max-width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    margin-right: 2%;
+    margin-left: 0.5%;
+}
+/* Styling for the chart container */
+#chart-container {
+    position: static;
+    margin-right: 2%;
+    width: 99%;
+    margin-top: 2.5%;
+    max-width: 100%;
+    height: 80vh;
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0%;
+    background-color: #fff;
+    background-image: url('a.png'), url('bottom axis.png');
+    background-size: 4%, 80%;
+    background-position: right;
+    background-position-x: 1%,50%;
+    background-position-y:  45%,100%;
+    background-repeat: no-repeat;
+}
+
+/* Styling for the foot container */
+.foot-container {
+    background-color: #f0f0f0;
+    color: #CC0000;
+    text-align: center;
+    font-size: 8px;
+    width: 15%;
+    box-sizing: border-box;
+    position: fixed; /* Fixes the footer at a specific position */
+    bottom: 0; /* Positions the footer at the bottom of the viewport */
+    left: 0;
+    z-index: 120;
+    animation: slideLeft 1s ease-in-out forwards, colorChange 1.0s infinite alternate;; /* Apply the slide-up animation */
+}
+
+@keyframes slideLeft {
+    0% {
+        left: -100%; /* Start completely off-screen to the left */
+    }
+    100% {
+        left: 0; /* End at the left edge of the viewport */
+    }
+}
+
+/* Define the keyframes for the color-change animation */
+@keyframes colorChange {
+    0% {
+        color: #cc0000; /* Start with red color */
+    }
+    100% {
+        color: grey; /* Transition to grey */
+    }
+}
+
+/* Styling for the legend */
+.legend {
+    width: 45%;
+    height: 90%;
+    padding-left: 55%;
+}
+
+.data-table table {
+    margin: 0%;
+    width: 100%;
+    max-width: fit-content;
+    border-collapse: collapse;
+    padding: 0%;
+}
+
+/* Styling for the data table on web page */
+.data-table th {
+    border-bottom: 2px solid #000000;
+    padding: 0.5%;
+    text-align: left;
+    background-color: #FFFFFF;
+    color: #CC0000;
+    margin: 0%; /* Ensure no margin is applied */
+    border-spacing: 0%; /* Ensure no spacing between table borders */
+    border: none; /* Ensure no border is added to the th elements */
+    font-size: small;
+    text-overflow: ellipsis;
+}
+
+
+.data-table td {
+    border-bottom: 1px solid #cbcbcb;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+    font-size: small;
+    text-overflow: ellipsis;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.data-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Styling for the chart in the webpage */
+#chart {
+    display: block;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    margin-left: 3%;
+    margin-bottom: 3%;
+    margin-top: 0%; /* Reduce or remove top margin */
+    padding-left: 2%; /* Remove any padding that might add space */
+}
+
+.center-text {
+    text-align: center;
+}
+
+/* Styling for the dynamic title based on the filters used */
+.fixed-title {
+    display: flex;
+    position: fixed;
+    top: 6%;
+    width: 98%;
+    background-color: #fff;
+    color: #000000;
+    text-align: center;
+    z-index: 700;
+    padding-bottom: 0.5%;
+    padding-top: 0.5%;
+    margin: 0;
+    height: 5%;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Custom Multiselect Dropdown CSS */
+.multi-select-container {
+    background-color: #f0f0f0;
+    color: #090909;
+    padding: 0.5%;
+    border-radius: 10px;
+    width: 99%;
+}
+
+.multi-select-container label {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.multi-select-selected-item {
+    background-color: #e0e0e0;
+    border-radius: 2px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    width: 97%;
+}
+
+.multi-select-selected-item:hover {
+    background-color: #d0d0d0;
+    width: 97%;
+}
+
+.multi-select-search {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+}
+
+.multi-select-search input {
+    position: sticky;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 80%;
+    margin-bottom: 2%;
+    height: 20px;
+    background-color: #ffffff;
+
+}
+
+.multi-select-option {
+    padding: 0.5%;
+    cursor: pointer;
+    font-size: 90%;
+}
+
+.multi-select-option label {
+    font-size: 90%;
+    font-weight: normal;
+    text-align: left;
+    margin: 0;
+    justify-content: left;
+    padding: 0%;
+}
+
+.multi-select-option:hover {
+    background-color: #f0f0f0;
+}
+
+.multi-select-option input[type="checkbox"] {
+    margin-right: 3%;
+}
+
+.multi-select-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 0; /* Remove any margin around the buttons */
+    padding: 0 5px; /* Optional: Add padding inside the button container */
+    width: 100%; /* Ensure the buttons take up the full width of the dropdown */
+    box-sizing: border-box; /* Ensure padding is included in the width calculation */
+}
+
+.multi-select-button {
+    background-color: #CC0000;
+    color: white;
+    border: none;
+    padding: 2% 10%;
+    text-align: center;
+    font-size: 80%;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    flex: 1;
+    margin: 0; /* Remove margin between buttons */
+}
+
+.multi-select-button:not(:last-child) {
+    margin-right: 2%; /* Add a small gap between the buttons */
+}
+
+.multi-select-button:hover {
+    background-color: white;
+    color: #CC0000;
+}
+
+.multi-select-apply {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #CC0000;
+    color: white;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    font-size: 80%;
+    margin-left: 0px;
+    border-radius: 0px;
+    height: 95%;
+    padding: 1.5%;
+    margin-bottom: 0%;
+}
+
+.sort-pointer {
+    font-size: 80%;
+    color: gray;
+    font-style: italic;
+    margin-left: 4%;
+    vertical-align: middle;
+}
+
+.multi-select-dropdown::-webkit-scrollbar {
+    width: 5%;
+}
+
+.multi-select-dropdown::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.multi-select-dropdown::-webkit-scrollbar-thumb:hover {
+    background-color: #b3b3b3;
+}
+/* Styling for the data table in data table container */
+.data-table {
+    overflow: auto;
+    height: calc(100vh - 150px); /* Adjust based on your header and footer height */
+    position: relative;
+    border-collapse: collapse; /* Ensure no extra space between borders */
+    width: 100%; /* Ensure table takes full width */
+    margin-left: 0.1%; /* Remove any default margins */
+    padding: 0; /* Remove any default padding */
+    margin-left: 0.5%;
+    text-overflow: ellipsis;
+}
+
+/* Styling for the fixed column headers in the data table in web page */
+.data-table thead {
+    position: sticky;
+    top: 0; /* Stick the header to the top */
+    z-index: 2;
+    background-color: #FFFFFF; /* Ensure background color is set for the sticky header */
+    color: #CC0000;
+    border-bottom: 2px solid #000000;
+    margin: 0; /* Remove bottom margin to close the gap */
+    padding: 0; /* Remove padding from the thead */
+    text-align: left;
+}
+

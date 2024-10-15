@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PI Data Visualization Tool</title>
+    <!-- Link to the custom stylesheet for styling the page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Link to FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Link to Google Fonts for custom font styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Import map for Material Web components -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  <!-- Importing Material Web components for UI elements -->
+  <script type="module">
+    import '@material/web/all.js';
+    import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+  </script>
+
+</head>
+<body>
+    <!-- Slot element for inserting content into a Web Component -->
+    <slot>
+        <h1 class="title">PI Data Visualization Tool</h1>
+        <form action="{{ url_for('upload_file') }}" method="get" style="cursor: pointer;">
+            <div class="logo-container" onclick="this.closest('form').submit();">
+                <!-- Display the logo using an image from the static folder -->
+                <img src="{{ url_for('static', filename='log.png') }}" alt="Logo">
+            </div>
+        </form>
+    </slot>
+    <div class="container">
+        <div class="command-center">
+            <h3 class="filtertopic">Filters</h3>
+            <!-- Form to apply filters for data visualization -->
+            <form method="GET" action="/" id="filter-form">
+                <div class="filters">
+                    <div class="filter">
+                        <buttonn type="button" id="reset-filters-button">Reset Filters</buttonn>
+                        <!-- Dropdown to filter by Bain Industry -->
+                        <label for="industry">Bain Industry</label>
+                        <select id="industry" name="industry">
+                            <option value="">Select Industry</option>
+                            <!-- Loop through industries and populate the dropdown options -->
+                            {% for industry in industries %}
+                            <option value="{{ industry }}" {% if request.args.get('industry') == industry %}selected{% endif %}>{{ industry }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label for="Geography">Region</label>
+                        <select id="geography" name="geography">
+                            <option value="">Global</option>
+                            <option value="APAC" {% if request.args.get('geography') == 'APAC' %}selected{% endif %}>APAC</option>
+                            <option value="EMEA" {% if request.args.get('geography') == 'EMEA' %}selected{% endif %}>EMEA</option>
+                            <option value="AMER" {% if request.args.get('geography') == 'AMER' %}selected{% endif %}>AMER</option>
+                        </select>
+                        
+                    </div>
+                    <div class="filter">
+                        <!-- Dropdown to filter by Primary Industry -->
+                        <label for="industry_primary_sector">Sector</label>
+                        <select id="industry_primary" name="industry_primary_sector">
+                            <option value="">All Sectors</option>
+                            <!-- Loop through primary industries and populate the dropdown options -->
+                            {% for industry_primary_sector in industries_primary_sector %}
+                                <option value="{{ industry_primary_sector }}" {% if request.args.get('industry_primary_sector') == industry_primary_sector %}selected{% endif %}>{{ industry_primary_sector }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- Primary Industry Multi-Select Filter -->
+                    <div class="filter multi-select-container" id="primary-industry-filter">
+                        <label for="industry_primary">Primary Industry</label>
+                        <div id="industry_primary" class="multi-select-selected">
+                            Select Primary Industry
+                        </div>
+                        <div class="multi-select-dropdown">
+                            <div class="multi-select-search">
+                                <!-- Search input for filtering primary industry options -->
+                                <input type="text" placeholder="Search industries...">
+                            </div>
+                            <div class="multi-select-buttons">
+                                <!-- Buttons to select or clear all primary industry options -->
+                                <button id="select-all-industry" class="multi-select-button">Select all</button>
+                                <button id="clear-all-industry" class="multi-select-button">Clear all</button>
+                            </div>
+                            <div class="multi-select-options-container">
+                                <!-- Loop through industries and create checkboxes for each -->
+                                {% for industry_primary in industries_primary %}
+                                <div class="multi-select-option">
+                                    <input type="checkbox" id="industry_{{ industry_primary }}" name="industry_primary[]" value="{{ industry_primary }}">
+                                    <label for="industry_{{ industry_primary }}">{{ industry_primary }}</label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <!-- Button to apply the selected industries -->
+                            <button id="apply-selection-industry" class="multi-select-apply">Apply</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Relationship Filter -->
+                    <div class="filter multi-select-container" id="relationship-filter">
+                        <label for="relationship">Relationship</label>
+                        <div id="relationship" class="multi-select-selected">
+                            All relationships
+                        </div>
+                        <div class="multi-select-dropdown">
+                            <div class="multi-select-search">
+                                <!-- Search input for filtering relationship options -->
+                                <input type="text" placeholder="Search relationships...">
+                            </div>
+                            <div class="multi-select-buttons">
+                                <!-- Buttons to select or clear all relationship options -->
+                                <button id="select-all-relationship" class="multi-select-button">Select all</button>
+                                <button id="clear-all-relationship" class="multi-select-button">Clear all</button>
+                            </div>
+                            <div class="multi-select-options-container">
+                                <!-- Loop through relationship options and create checkboxes for each -->
+                                <div class="multi-select-option">
+                                    <input type="checkbox" id="relationship_Current" name="relationship[]" value="Current">
+                                    <label for="relationship_Current">Current</label>
+                                </div>
+                                <div class="multi-select-option">
+                                    <input type="checkbox" id="relationship_Recent" name="relationship[]" value="Recent">
+                                    <label for="relationship_Recent">Recent</label>
+                                </div>
+                                <div class="multi-select-option">
+                                    <input type="checkbox" id="relationship_Greyspace" name="relationship[]" value="Greyspace">
+                                    <label for="relationship_Greyspace">Greyspace</label>
+                                </div>
+                                <div class="multi-select-option">
+                                    <input type="checkbox" id="relationship_Whitespace" name="relationship[]" value="Whitespace">
+                                    <label for="relationship_Whitespace">Whitespace</label>
+                                </div>
+                            </div>
+                            <!-- Button to apply the selected relationships -->
+                            <button id="apply-selection-relationship" class="multi-select-apply">Apply</button>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label for="priority_status">Priority Status</label>
+                        <select id="priority_status" name="priority_status">
+                            <option value="">All companies</option>
+                            {% for priority_status in priority_column %}
+                            <option value="{{ priority_status }}" {% if request.args.get('priority_status') == priority_status %}selected{% endif %}>{{ priority_status }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <!-- Company Filter -->
+                
+                <div class="filter multi-select-container" id="company-filter">
+                    <label for="company">Company</label>
+                    <div id="company" class="multi-select-selected">
+                        All companies
+                    </div>
+                    <div class="multi-select-dropdown">
+                        <div class="multi-select-search">
+                            <!-- Search input for filtering company options -->
+                            <input type="text" placeholder="Search companies...">
+                        </div>
+                        <div class="multi-select-buttons">
+                            <!-- Buttons to select or clear all company options -->
+                            <button id="select-all-company" class="multi-select-button">Select all</button>
+                            <button id="clear-all-company" class="multi-select-button">Clear all</button>
+                        </div>
+                        <div class="multi-select-options-container">
+                            <!-- Loop through companies and create checkboxes for each -->
+                            {% for company in companies %}
+                            <div class="multi-select-option">
+                                <input type="checkbox" id="company_{{ company }}" name="company[]" value="{{ company }}">
+                                <label for="company_{{ company }}">{{ company }}</label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <!-- Button to apply the selected companies -->
+                        <button id="apply-selection-company" class="multi-select-apply">Apply</button>
+                    </div>
+                </div>
+                
+                <!-- Country Filter -->
+                <div class="filter multi-select-container" id="country-filter">
+                    <label for="country">Country</label>
+                    <div id="country" class="multi-select-selected">
+                        All countries
+                    </div>
+                    <div class="multi-select-dropdown">
+                        <div class="multi-select-search">
+                            <!-- Search input for filtering country options -->
+                            <input type="text" placeholder="Search countries...">
+                        </div>
+                        <div class="multi-select-buttons">
+                            <!-- Buttons to select or clear all country options -->
+                            <button id="select-all" class="multi-select-button">Select all</button>
+                            <button id="clear-all" class="multi-select-button">Clear all</button>
+                        </div>
+                        {% set selected_countries = request.args.getlist('country[]') %}
+                        <div class="multi-select-options-container">
+                            <!-- Loop through countries and create checkboxes for each -->
+                            {% for country in countries %}
+                            <div class="multi-select-option">
+                                <input type="checkbox" id="country_{{ country }}" name="country[]" value="{{ country }}" {% if country in selected_countries %}checked{% endif %}>
+                                <label for="country_{{ country }}">{{ country }}</label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <!-- Button to apply the selected countries -->
+                        <button id="apply-selection" class="multi-select-apply">Apply</button>
+                    </div>
+                </div>
+                <div class="filter">
+                    <label for="revenue">Revenue</label>
+                    <select id="revenue" name="revenue">
+                        <option value="">All revenue bands</option>
+                        <option value="less_than_100000" {% if request.args.get('revenue') == 'less_than_100000' %}selected{% endif %}> Less than $1B</option>
+                        <option value="between 10000_and_50000" {% if request.args.get('revenue') == 'between 10000_and_50000' %}selected{% endif %}> Between $1B and $5B</option>
+                        <option value="between 50000_and_100000" {% if request.args.get('revenue') == 'between 50000_and_100000' %}selected{% endif %}>Between $5B and $10B</option>
+                        <option value="between 100000_and_200000" {% if request.args.get('revenue') == 'between 100000_and_200000' %}selected{% endif %}>Between $10B and $20B</option>
+                        <option value="more_than_200000" {% if request.args.get('revenue') == 'more_than_200000' %}selected{% endif %}>Greater than $20B</option>
+                    </select>
+                </div>
+                <div class="filter">
+                    <label for="combined_opp_score">Combined Opp. Score</label>
+                    <select id="combined_opp_score" name="combined_opp_score">
+                        <option value="">Select Score Range</option>
+                        <option value="less_than_5" {% if request.args.get('combined_opp_score') == 'less_than_5' %}selected{% endif %}>Less than 5</option>
+                        <option value="between_5_and_10" {% if request.args.get('combined_opp_score') == 'between_5_and_10' %}selected{% endif %}>5 to 10</option>
+                        <option value="greater_than_10" {% if request.args.get('combined_opp_score') == 'greater_than_10' %}selected{% endif %}>Greater than 10</option>
+                    </select>
+                </div>
+                
+                    </select>
+                    </form>
+                    <!-- Form to generate a PowerPoint report based on selected filters -->
+                    <form method="POST" action="/generate_ppt" target="_blank">
+                        <!-- Hidden inputs to pass filter values to the server -->
+                        <input type="hidden" name="industry" id="hidden-industry">
+                        <input type="hidden" name="industry_primary[]" id="hidden-industry-primary">
+                        <input type="hidden" name="relationship[]" id="hidden-relationship">
+                        <input type="hidden" name="revenue" id="hidden-revenue">
+                        <input type="hidden" name="combined_opp_score" id="hidden-combined-opp-score">
+                        <input type="hidden" name="priority_status" id="hidden-priority-status">
+                        <input type="hidden" name="geography" id="hidden-geography">
+                        <input type="hidden" name="country[]" id="hidden-country">
+                        <input type="hidden" name="company[]" id="hidden-company">
+                        <!-- Button to generate the PowerPoint, triggers copying filter values to hidden inputs -->
+                        <button type="button" onclick="copyFiltersToHiddenInputs()">Generate PPT</button>
+                        
+                    </form>
+                    
+                        <div class="foot-container">
+                            <!-- Footer section -->
+                            <h2> Developed By BCN Visualization COE</h2>
+                        </div>
+                </div>
+            
+        </div>
+    </div>
+
+</div>
+<div class="content">
+    {% if filters_applied %}
+        <h2 class="fixed-title">
+            <!-- Display a dynamic title based on applied filters -->
+            {% if industry %}{{ industry }}{% endif %}
+            {% if revenue == 'less_than_100000' %}Less than $1B{% elif revenue == 'between 10000_and_50000'%}between $1B and $5B {% elif revenue == 'between 50000_and_100000'%}between $5B and $10B {% elif revenue == 'between 50000_and_100000'%}between $5B and $10B {% elif revenue == 'between 100000_and_200000'%}between $10B and $20B {% elif revenue == 'more_than_200000'%}greater than $20B{% endif %}
+            Potential Targets In
+            {% if selected_countries %}{{ selected_countries | join(",") }}{% endif %}
+            {% if relationship %}({{ relationship }}){% else %}
+            All relationships {% endif %}
+        </h2>
+        {% if filtered_data %}
+        <!-- Container for the chart visualization -->
+        
+        <div id="chart-container" class="chart-container">
+        
+            <canvas id="chart"></canvas>
+        </div>
+        <div class="data-table" id="table-view">
+            <!-- Table view for displaying filtered data -->
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th colspan="14" style="text-align: center; position: relative;">
+                            <div style="display: flex; justify-content: space-between; align-items: left; width: 100%;">
+                                <div style="flex: 1; display: flex; justify-content: left;">
+                                    <!-- Sort instruction for users -->
+                                    <span class="sort-pointer" style="white-space: nowrap;">* Sort by clicking on column name</span>
+                                </div>
+                                <div>
+                                    <!-- Display the legend image -->
+                                    <img src="{{ url_for('static', filename='Legend.png') }}" alt="Legend" class="legend">
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                    <ta>
+                    <tr style="text-align: center;">
+                        <!-- Table headers with sorting functionality on click -->
+                        <th style="cursor: pointer;" onclick="sortTable(0)">Company</th>
+                        <th style="cursor: pointer; text-align: center;" onclick="sortTableByRevenue(1)">Revenue ($B)</th>
+                        <th style="cursor: pointer; text-align: center;" onclick="sortTableByCountry(2)">Country</th>
+                        <th style="cursor: pointer; text-align: center;" onclick="sortTableBySector(3)">Primary Industry</th>
+                        <th style="cursor: pointer; text-align: center;" onclick="sortTableByEBITChange(4)">EBIT % pt change</th>
+                        <th style="cursor: pointer; text-align: center;" onclick="sortTableByRelativeEBITMargin(5)">Relative EBIT margin</th>
+                        <th style="cursor: pointer; text-align: center;" onclick="sortTableByEBITOpportunity(6)">EBIT opportunity ($M)</th>
+                        <th style="cursor: pointer; text-align: center;" onclick="sortTableBySGAOpportunity(7)">SG&A opportunity ($M)</th>
+                        <th style="cursor: pointer; text-align: center;" onclick="sortTableByNWCOpportunity(8)">NWC opportunity ($M)</th>
+                        <th style="cursor: pointer; text-align: center;" onclick="sortTableByToplineopportunity(8)">Top-line opportunity</th>                        
+                        <th style="cursor: pointer; text-align: center;" onclick="sortTableByProjectedRevenueOpportunity(9)">Projected revenue opportunity '22-'24 ($M)</th>
+                        <th style="cursor: pointer; text-align: center;" onclick="sortTableByHistoricalRevenueGrowth(10)">Historical revenue growth '22 vs '21</th>                        
+                        <th style="cursor: pointer; text-align: center;" onclick="sortTableByNetDebtEBITDA(11)">Net Debt / EBITDA</th>
+                        <th style="cursor: pointer; text-align: center;" onclick="sortTableByESGScore(12)">Relative ESG score</th>
+                    </tr>
+                </ta>
+                </thead>
+                <tbody>
+                    <!-- Loop through the filtered data and populate the table rows -->
+                    {% for row in filtered_data %}
+                    <tr>
+                        <td>{{ row['Company'] }}</td>
+                        <td style="text-align: center;">{{ "%.1f" | format(row['Revenue (M)'] /1000) }}</td>
+                        <td>{{ row['Country'] }}</td>
+                        <td>{{ row['Primary Industry'] }}</td>
+                        <td style="text-align: center;">
+                            {% set ebit_change = row['EBIT margin Change (% pts.)  [Benchmark year-Base year]'] %}
+                            {% if ebit_change and ebit_change|float is not none %}
+                                {% set ebit_change = ebit_change|float %}
+                                <!-- Display EBIT change with an up arrow if positive -->
+                                {% if ebit_change * 100 > 0 %}
+                                    <span>{{ "%.1f" | format(ebit_change * 100) }} <i class="fas fa-arrow-up" style="color:rgb(121, 214, 121);"></i></span>
+                                {% else %}
+                                <!-- Display EBIT change with an down arrow if negative -->
+                                    <span>{{ "%.1f" | format(ebit_change * 100) }} <i class="fas fa-arrow-down" style="color:red;"></i></span>
+                                {% endif %}
+                            {% else %}
+                                <span>N/A</span>
+                            {% endif %}
+                        </td>
+                        <td style="text-align: center;" >{{ row['Relative-EBIT Margin'] }}</td>
+                        <td style="text-align: center;">
+                            {{ row['Static EBIT opportunity (Median)']}}
+                        </td>
+                        <td style="text-align: center;">
+                            {{ row['Static SG&A Opportunity (Median)']}}
+                        </td>
+                        <td style="text-align: center;">
+                            {{ row['Static NWC opportunity (Median)']}}
+                        </td>
+                        <td style="text-align: center;" >{{ row['Median Incremental Rev.- EBIT Oppt. (Static Historical)'] }}</td>
+                        <td style="text-align: center;" >{{ row["Median Incremental Rev. - EBIT Oppty (Static Projected)"] }}</td>
+                        <td style="text-align: center;">
+                            {% set historical_rev_cagr = row["Historical rev. CAGR"] %}
+                            {% if historical_rev_cagr and historical_rev_cagr|float is not none %}
+                                {% set historical_rev_cagr = historical_rev_cagr|float %}
+                                {{ "%.0f" | format(historical_rev_cagr * 100) }}%
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </td>
+                        <td style="text-align: center;" >
+                            {% if row["Net debt/EBITDA (Dec'22)"]|float %}
+                                <span>{{ row["Net debt/EBITDA (Dec'22)"] }}x</span>
+                            {% else %}
+                                <span>{{ row["Net debt/EBITDA (Dec'22)"] }}</span>
+                            {% endif %}
+                        </td>
+                        <td style="text-align: center;">
+                            {% if row['Relative ESG Combined score'] == "Above Top Q" %}
+                                <span style="color: #507867; font-size: 2.5em;">&#9679;</span> <!-- Green circle indicator -->
+                            {% elif row['Relative ESG Combined score'] == "Above Median" %}
+                                <span style="color: #E9CD49; font-size: 2.5em;">&#9679;</span> <!-- Yellow circle indicator -->
+                            {% elif row['Relative ESG Combined score'] == "Below Median" %}
+                                <span style="color: #CC0000; font-size: 2.5em;">&#9679;</span> <!-- Red circle indicator -->
+                            {% else %}
+                                <span>{{ row['Relative ESG Combined score'] }}</span> <!-- No circle indicator for other values -->
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <!-- Message displayed if no data is available -->
+        <p>No data available</p>
+        {% endif %}
+
+    {% endif %}
+</div>
+
+<script>
+
+    //JavaScript function to sort the table based on the selected column
+    function sortTable(columnIndex) {
+        var table = document.getElementById("data-table");
+        var rows = Array.from(table.rows).slice(2); // Skip the first two header rows
+        var isAscending = table.getAttribute("data-sort-order") === "asc";
+        
+        rows.sort(function(a, b) {
+            var cellA = a.cells[columnIndex].textContent.trim();
+            var cellB = b.cells[columnIndex].textContent.trim();
+            
+            if (!isNaN(cellA) && !isNaN(cellB)) {
+                // Sort numbers
+                cellA = parseFloat(cellA);
+                cellB = parseFloat(cellB);
+            }
+
+            if (cellA < cellB) {
+                return isAscending ? -1 : 1;
+            }
+            if (cellA > cellB) {
+                return isAscending ? 1 : -1;
+            }
+            return 0;
+        });
+
+        // Reverse the sort order for next click
+        table.setAttribute("data-sort-order", isAscending ? "desc" : "asc");
+
+        // Reattach sorted rows
+        for (var i = 0; i < rows.length; i++) {
+            table.tBodies[0].appendChild(rows[i]);
+        }
+    }
+
+    //Additional JavaScript functions for sorting the table by specific columns
+    function sortTableByRevenue(columnIndex) {
+    var table = document.getElementById("data-table");
+    var rows = Array.from(table.rows).slice(2); // Skip the first two header rows
+    var isAscending = table.getAttribute("data-sort-order-revenue") === "asc";
+    
+    rows.sort(function(a, b) {
+        var cellA = parseFloat(a.cells[columnIndex].textContent.trim());
+        var cellB = parseFloat(b.cells[columnIndex].textContent.trim());
+
+        if (isNaN(cellA)) cellA = -Infinity; // Handle cases where the cell content is not a number
+        if (isNaN(cellB)) cellB = -Infinity;
+
+        if (cellA < cellB) {
+            return isAscending ? -1 : 1;
+        }
+        if (cellA > cellB) {
+            return isAscending ? 1 : -1;
+        }
+        return 0;
+    });
+
+    // Reverse the sort order for next click
+    table.setAttribute("data-sort-order-revenue", isAscending ? "desc" : "asc");
+
+    // Reattach sorted rows
+    for (var i = 0; i < rows.length; i++) {
+        table.tBodies[0].appendChild(rows[i]);
+    }
+}
+
+function sortTableByCountry(columnIndex) {
+    var table = document.getElementById("data-table");
+    var rows = Array.from(table.rows).slice(2); // Skip the first two header rows
+    var isAscending = table.getAttribute("data-sort-order-country") === "asc";
+    
+    rows.sort(function(a, b) {
+        var cellA = a.cells[columnIndex].textContent.trim().toLowerCase();
+        var cellB = b.cells[columnIndex].textContent.trim().toLowerCase();
+
+        if (cellA < cellB) {
+            return isAscending ? -1 : 1;
+        }
+        if (cellA > cellB) {
+            return isAscending ? 1 : -1;
+        }
+        return 0;
+    });
+
+    // Reverse the sort order for next click
+    table.setAttribute("data-sort-order-country", isAscending ? "desc" : "asc");
+
+    // Reattach sorted rows
+    for (var i = 0; i < rows.length; i++) {
+        table.tBodies[0].appendChild(rows[i]);
+    }
+}
+
+function sortTableBySector(columnIndex) {
+    var table = document.getElementById("data-table");
+    var rows = Array.from(table.rows).slice(2); // Skip the first two header rows
+    var isAscending = table.getAttribute("data-sort-order-sector") === "asc";
+    
+    rows.sort(function(a, b) {
+        var cellA = a.cells[columnIndex].textContent.trim().toLowerCase();
+        var cellB = b.cells[columnIndex].textContent.trim().toLowerCase();
+
+        if (cellA < cellB) {
+            return isAscending ? -1 : 1;
+        }
+        if (cellA > cellB) {
+            return isAscending ? 1 : -1;
+        }
+        return 0;
+    });
+
+    // Reverse the sort order for next click
+    table.setAttribute("data-sort-order-sector", isAscending ? "desc" : "asc");
+
+    // Reattach sorted rows
+    for (var i = 0; i < rows.length; i++) {
+        table.tBodies[0].appendChild(rows[i]);
+    }
+}
+
+    function sortTableByRelativeEBITMargin(columnIndex) {
+        var table = document.getElementById("data-table");
+        var rows = Array.from(table.rows).slice(2); // Skip the first two header rows
+        var isAscending = table.getAttribute("data-sort-order-relative-ebit-margin") === "asc";
+        
+        rows.sort(function(a, b) {
+            var cellA = parseFloat(a.cells[columnIndex].textContent.trim());
+            var cellB = parseFloat(b.cells[columnIndex].textContent.trim());
+
+            if (isNaN(cellA)) cellA = -Infinity; // Handle cases where the cell content is not a number
+            if (isNaN(cellB)) cellB = -Infinity;
+
+            if (cellA < cellB) {
+                return isAscending ? -1 : 1;
+            }
+            if (cellA > cellB) {
+                return isAscending ? 1 : -1;
+            }
+            return 0;
+        });
+
+        // Reverse the sort order for next click
+        table.setAttribute("data-sort-order-relative-ebit-margin", isAscending ? "desc" : "asc");
+
+        // Reattach sorted rows
+        for (var i = 0; i < rows.length; i++) {
+            table.tBodies[0].appendChild(rows[i]);
+        }
+    }
+
+    function sortTableByEBITChange(columnIndex) {
+        var table = document.getElementById("data-table");
+        var rows = Array.from(table.rows).slice(2); // Skip the first two header rows
+        var isAscending = table.getAttribute("data-sort-order-ebit") === "asc";
+        
+        rows.sort(function(a, b) {
+            var cellA = parseFloat(a.cells[columnIndex].textContent.trim());
+            var cellB = parseFloat(b.cells[columnIndex].textContent.trim());
+
+            if (isNaN(cellA)) cellA = -Infinity; // Handle cases where the cell content is not a number
+            if (isNaN(cellB)) cellB = -Infinity;
+
+            if (cellA < cellB) {
+                return isAscending ? -1 : 1;
+            }
+            if (cellA > cellB) {
+                return isAscending ? 1 : -1;
+            }
+            return 0;
+        });
+
+        // Reverse the sort order for next click
+        table.setAttribute("data-sort-order-ebit", isAscending ? "desc" : "asc");
+
+        // Reattach sorted rows
+        for (var i = 0; i < rows.length; i++) {
+            table.tBodies[0].appendChild(rows[i]);
+        }
+    }
+
+    function sortTableByEBITOpportunity(columnIndex) {
+        var table = document.getElementById("data-table");
+        var rows = Array.from(table.rows).slice(2); // Skip the first two header rows
+        var isAscending = table.getAttribute("data-sort-order-ebit-opportunity") === "asc";
+        
+        rows.sort(function(a, b) {
+            var cellA = parseFloat(a.cells[columnIndex].textContent.trim());
+            var cellB = parseFloat(b.cells[columnIndex].textContent.trim());
+
+            if (isNaN(cellA)) cellA = -Infinity; // Handle cases where the cell content is not a number
+            if (isNaN(cellB)) cellB = -Infinity;
+
+            if (cellA < cellB) {
+                return isAscending ? -1 : 1;
+            }
+            if (cellA > cellB) {
+                return isAscending ? 1 : -1;
+            }
+            return 0;
+        });
+
+        // Reverse the sort order for next click
+        table.setAttribute("data-sort-order-ebit-opportunity", isAscending ? "desc" : "asc");
+
+        // Reattach sorted rows
+        for (var i = 0; i < rows.length; i++) {
+            table.tBodies[0].appendChild(rows[i]);
+        }
+    }
+
+    function sortTableBySGAOpportunity(columnIndex) {
+        var table = document.getElementById("data-table");
+        var rows = Array.from(table.rows).slice(2); // Skip the first two header rows
+        var isAscending = table.getAttribute("data-sort-order-sga-opportunity") === "asc";
+        
+        rows.sort(function(a, b) {
+            var cellA = parseFloat(a.cells[columnIndex].textContent.trim());
+            var cellB = parseFloat(b.cells[columnIndex].textContent.trim());
+
+            if (isNaN(cellA)) cellA = -Infinity; // Handle cases where the cell content is not a number
+            if (isNaN(cellB)) cellB = -Infinity;
+
+            if (cellA < cellB) {
+                return isAscending ? -1 : 1;
+            }
+            if (cellA > cellB) {
+                return isAscending ? 1 : -1;
+            }
+            return 0;
+        });
+
+        // Reverse the sort order for next click
+        table.setAttribute("data-sort-order-sga-opportunity", isAscending ? "desc" : "asc");
+
+        // Reattach sorted rows
+        for (var i = 0; i < rows.length; i++) {
+            table.tBodies[0].appendChild(rows[i]);
+        }
+    }
+
+    function sortTableByNWCOpportunity(columnIndex) {
+        var table = document.getElementById("data-table");
+        var rows = Array.from(table.rows).slice(2); // Skip the first two header rows
+        var isAscending = table.getAttribute("data-sort-order-nwc-opportunity") === "asc";
+        
+        rows.sort(function(a, b) {
+            var cellA = parseFloat(a.cells[columnIndex].textContent.trim());
+            var cellB = parseFloat(b.cells[columnIndex].textContent.trim());
+
+            if (isNaN(cellA)) cellA = -Infinity; // Handle cases where the cell content is not a number
+            if (isNaN(cellB)) cellB = -Infinity;
+
+            if (cellA < cellB) {
+                return isAscending ? -1 : 1;
+            }
+            if (cellA > cellB) {
+                return isAscending ? 1 : -1;
+            }
+            return 0;
+        });
+
+        // Reverse the sort order for next click
+        table.setAttribute("data-sort-order-nwc-opportunity", isAscending ? "desc" : "asc");
+
+        // Reattach sorted rows
+        for (var i = 0; i < rows.length; i++) {
+            table.tBodies[0].appendChild(rows[i]);
+        }
+    }
+
+    function sortTableByProjectedRevenueOpportunity(columnIndex) {
+        var table = document.getElementById("data-table");
+        var rows = Array.from(table.rows).slice(2); // Skip the first two header rows
+        var isAscending = table.getAttribute("data-sort-order-projected-revenue-opportunity") === "asc";
+        
+        rows.sort(function(a, b) {
+            var cellA = parseFloat(a.cells[columnIndex].textContent.trim());
+            var cellB = parseFloat(b.cells[columnIndex].textContent.trim());
+
+            if (isNaN(cellA)) cellA = -Infinity; // Handle cases where the cell content is not a number
+            if (isNaN(cellB)) cellB = -Infinity;
+
+            if (cellA < cellB) {
+                return isAscending ? -1 : 1;
+            }
+            if (cellA > cellB) {
+                return isAscending ? 1 : -1;
+            }
+            return 0;
+        });
+
+        // Reverse the sort order for next click
+        table.setAttribute("data-sort-order-projected-revenue-opportunity", isAscending ? "desc" : "asc");
+
+        // Reattach sorted rows
+        for (var i = 0; i < rows.length; i++) {
+            table.tBodies[0].appendChild(rows[i]);
+        }
+    }
+    function sortTableByToplineopportunity(columnIndex) {
+        var table = document.getElementById("data-table");
+        var rows = Array.from(table.rows).slice(2); // Skip the first two header rows
+        var isAscending = table.getAttribute("data-sort-order-projected-revenue-opportunity") === "asc";
+        
+        rows.sort(function(a, b) {
+            var cellA = parseFloat(a.cells[columnIndex].textContent.trim());
+            var cellB = parseFloat(b.cells[columnIndex].textContent.trim());
+
+            if (isNaN(cellA)) cellA = -Infinity; // Handle cases where the cell content is not a number
+            if (isNaN(cellB)) cellB = -Infinity;
+
+            if (cellA < cellB) {
+                return isAscending ? -1 : 1;
+            }
+            if (cellA > cellB) {
+                return isAscending ? 1 : -1;
+            }
+            return 0;
+        });
+
+        // Reverse the sort order for next click
+        table.setAttribute("data-sort-order-projected-revenue-opportunity", isAscending ? "desc" : "asc");
+
+        // Reattach sorted rows
+        for (var i = 0; i < rows.length; i++) {
+            table.tBodies[0].appendChild(rows[i]);
+        }
+    }
+
+    function sortTableByHistoricalRevenueGrowth(columnIndex) {
+        var table = document.getElementById("data-table");
+        var rows = Array.from(table.rows).slice(2); // Skip the first two header rows
+        var isAscending = table.getAttribute("data-sort-order-historical-revenue-growth") === "asc";
+        
+        rows.sort(function(a, b) {
+            var cellA = parseFloat(a.cells[columnIndex].textContent.trim());
+            var cellB = parseFloat(b.cells[columnIndex].textContent.trim());
+
+            if (isNaN(cellA)) cellA = -Infinity; // Handle cases where the cell content is not a number
+            if (isNaN(cellB)) cellB = -Infinity;
+
+            if (cellA < cellB) {
+                return isAscending ? -1 : 1;
+            }
+            if (cellA > cellB) {
+                return isAscending ? 1 : -1;
+            }
+            return 0;
+        });
+
+        // Reverse the sort order for next click
+        table.setAttribute("data-sort-order-historical-revenue-growth", isAscending ? "desc" : "asc");
+
+        // Reattach sorted rows
+        for (var i = 0; i < rows.length; i++) {
+            table.tBodies[0].appendChild(rows[i]);
+        }
+    }
+
+    function sortTableByNetDebtEBITDA(columnIndex) {
+        var table = document.getElementById("data-table");
+        var rows = Array.from(table.rows).slice(2); // Skip the first two header rows
+        var isAscending = table.getAttribute("data-sort-order-net-debt-ebitda") === "asc";
+        
+        rows.sort(function(a, b) {
+            var cellA = parseFloat(a.cells[columnIndex].textContent.trim());
+            var cellB = parseFloat(b.cells[columnIndex].textContent.trim());
+
+            if (isNaN(cellA)) cellA = -Infinity; // Handle cases where the cell content is not a number
+            if (isNaN(cellB)) cellB = -Infinity;
+
+            if (cellA < cellB) {
+                return isAscending ? -1 : 1;
+            }
+            if (cellA > cellB) {
+                return isAscending ? 1 : -1;
+            }
+            return 0;
+        });
+
+        // Reverse the sort order for next click
+        table.setAttribute("data-sort-order-net-debt-ebitda", isAscending ? "desc" : "asc");
+
+        // Reattach sorted rows
+        for (var i = 0; i < rows.length; i++) {
+            table.tBodies[0].appendChild(rows[i]);
+        }
+    }
+
+    function sortTableByESGScore(columnIndex) {
+        var table = document.getElementById("data-table");
+        var rows = Array.from(table.rows).slice(2); // Skip the first two header rows
+        var isAscending = table.getAttribute("data-sort-order-esg-score") === "asc";
+        
+        const order = {
+            "Above Top Q": 1,
+            "Above Median": 2,
+            "Below Median": 3
+        };
+        
+        rows.sort(function(a, b) {
+            var cellA = a.cells[columnIndex].textContent.trim();
+            var cellB = b.cells[columnIndex].textContent.trim();
+            
+            var valueA = order[cellA] || 4; // Default to 4 for undefined values
+            var valueB = order[cellB] || 4;
+
+            if (valueA < valueB) {
+                return isAscending ? -1 : 1;
+            }
+            if (valueA > valueB) {
+                return isAscending ? 1 : -1;
+            }
+            return 0;
+        });
+
+        // Reverse the sort order for next click
+        table.setAttribute("data-sort-order-esg-score", isAscending ? "desc" : "asc");
+
+        // Reattach sorted rows
+        for (var i = 0; i < rows.length; i++) {
+            table.tBodies[0].appendChild(rows[i]);
+        }
+    }
+
+</script>
+
+<!-- JavaScript to make priority companies data available on the page -->
+<script>
+    const priorityCompanies = {{ priority_companies | tojson | safe }};
+</script>
+
+
+    <!-- Importing external JavaScript libraries and scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        const filteredData = {{ filtered_data | tojson | safe }};
+        const backgroundImageUrl = "{{ url_for('static', filename='temp1.png') }}";
+        const xAxisImageUrl = "{{ url_for('static', filename='a.png') }}";
+        const yAxisImageUrl = "{{ url_for('static', filename='bottom axis.png') }}";
+    </script>
+ 
+</body>
+</html>
